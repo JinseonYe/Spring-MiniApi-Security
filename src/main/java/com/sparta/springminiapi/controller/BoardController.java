@@ -2,6 +2,7 @@ package com.sparta.springminiapi.controller;
 
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
+import com.sparta.springminiapi.dto.DeleteBoardRequestDto;
 import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
 import com.sparta.springminiapi.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +41,7 @@ public class BoardController {
     }
 
     @DeleteMapping("boards/{boardId}") //게시글 삭제
-    public void deleteBoard(@PathVariable Long boardId, @RequestParam String password) {
-        boardService.deleteBoard(boardId, password);
+    public void deleteBoard(@PathVariable Long boardId, @RequestBody DeleteBoardRequestDto deleteBoardRequestDto) {
+        boardService.deleteBoard(boardId, deleteBoardRequestDto);
     }
 }

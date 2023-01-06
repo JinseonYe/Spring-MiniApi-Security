@@ -4,6 +4,7 @@ import com.sparta.springminiapi.domain.Board;
 import com.sparta.springminiapi.domain.BoardRepository;
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
+import com.sparta.springminiapi.dto.DeleteBoardRequestDto;
 import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -62,8 +63,9 @@ public class BoardService { //컨트롤타워
 
     //게시글 삭제 로직
     @Transactional
-    public void deleteBoard(Long boardId, String password) {
+    public void deleteBoard(Long boardId, DeleteBoardRequestDto deleteBoardRequestDto) {
         Board boardDelete = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시물 없음"));
+        String password = deleteBoardRequestDto.getPassword();
         if (boardDelete.isValidPassword(password)) {
             boardRepository.delete(boardDelete);
             System.out.println("삭제 완료");
