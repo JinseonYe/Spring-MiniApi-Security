@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 @Getter
 public class BoardResponseDto {
     private final String title;
-    private final String user;
+    private final String username;
     private final String content;
     private final LocalDateTime createdAt;
 
     public BoardResponseDto(Board board) {
         this.title = board.getTitle();
-        this.user = board.getUser();
+        this.username = board.getUsername();
         this.content = board.getContent();
         this.createdAt = board.getCreatedAt();
     }

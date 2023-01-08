@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateBoardRequestDto {
     private String title;
-    private String user;
+    private String username;
     private String content;
     private String password;
 
