@@ -25,7 +25,7 @@ public class BoardService { //컨트롤타워
     //게시글 생성 로직
     @Transactional
     public void createBoard(CreateBoardRequestDto createBoardRequestDto) { //컨트롤러로부터 사용자가 요청한 요청정보들을 전달받아서 entity를 만들고 레파지토리를 통해서 디비한테 저장하라고 시킨다.
-        Board board = new Board(createBoardRequestDto.getTitle(), createBoardRequestDto.getUser(), createBoardRequestDto.getPassword(), createBoardRequestDto.getContent());
+        Board board = new Board(createBoardRequestDto.getTitle(), createBoardRequestDto.getUsername(), createBoardRequestDto.getPassword(), createBoardRequestDto.getContent());
         boardRepository.save(board);
     }
 
@@ -54,7 +54,7 @@ public class BoardService { //컨트롤타워
         Board boardSaved = boardRepository.findById(boardId).orElseThrow(() -> new IllegalArgumentException("게시물 없음"));
         // 수정을 요청할 때 수정할 데이터와 비밀번호를 같이 보내서 서버에서 비밀번호 일치 여부를 확인 한 후 업데이트해라.
         if (boardSaved.isValidPassword(updateBoardRequestDto.getPassword())) {
-            boardSaved.update(updateBoardRequestDto.getTitle(),updateBoardRequestDto.getUser(),updateBoardRequestDto.getContent());
+            boardSaved.update(updateBoardRequestDto.getTitle(),updateBoardRequestDto.getUsername(),updateBoardRequestDto.getContent());
             boardRepository.save(boardSaved); //대신에 @Transactional 가능
         } else {
             throw new IllegalArgumentException("패스워드가 틀렸습니다.");

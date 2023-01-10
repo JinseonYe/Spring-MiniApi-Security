@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table(name = "boards")
 public class Board extends TimeStamp{
 
     @Id
