@@ -20,7 +20,7 @@ public class UserService {
     private final JwtUtil jwtUtil;
 
     @Transactional //회원가입
-    public void signUp(SignUpRequestDto signUpRequestDto) {
+    public String signUp(SignUpRequestDto signUpRequestDto) {
         String username = signUpRequestDto.getUsername();
         String password = signUpRequestDto.getPassword();
 
@@ -32,6 +32,8 @@ public class UserService {
         //유저 생성 후 DB에 저장
         User user = new User(username, password);
         userRepository.save(user);
+
+        return "회원가입 완료!";
     }
 
     @Transactional //로그인
@@ -41,7 +43,7 @@ public class UserService {
 
         //회원 유무 확인
         User user = userRepository.findByUsername(username). orElseThrow(
-                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+                () -> new IllegalArgumentException("등록된 사용자ㄴ 없습니다.")
         );
 
         //비밀번호 비교

@@ -5,6 +5,7 @@ import com.sparta.springminiapi.dto.CreateBoardRequestDto;
 import com.sparta.springminiapi.dto.DeleteBoardRequestDto;
 import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
 import com.sparta.springminiapi.service.BoardService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,29 +20,33 @@ public class BoardController {
 //        this.boardService = boardService;
 //    }
 
-    //
-    @PostMapping("/api/boards") // Create Posts -> 게시물을 생성한다. 게시물 생성 API
-    public void createBoard(@RequestBody CreateBoardRequestDto createBoardRequestDto) { //제이슨이라는 형태로 들어올건데 저 객체에 값좀 넣어줘.
-        boardService.createBoard(createBoardRequestDto);
+    //게시글 생성
+    @PostMapping("/api/boards")
+    public void createBoard(@RequestBody CreateBoardRequestDto createBoardRequestDto, HttpServletRequest request) { //제이슨이라는 형태로 들어올건데 저 객체에 값좀 넣어줘.
+        boardService.createBoard(createBoardRequestDto, request);
     }
 
-    @GetMapping("/api/boards/{boardId}") //게시글 조회
+    //게시글 조회
+    @GetMapping("/api/boards/{boardId}")
     public BoardResponseDto getBoard(@PathVariable Long boardId) {
         return boardService.getBoard(boardId);
     }
 
-    @GetMapping("/api/boards") //전체 게시글 조회
+    //전체 게시글 조회
+    @GetMapping("/api/boards")
     public List<BoardResponseDto> getBoardList() {
         return boardService.getBoardList();
     }
 
-    @PutMapping("/api/boards/{boardId}") //게시글 수정
-    public void updateBoard(@PathVariable Long boardId, @RequestBody UpdateBoardRequestDto updateBoardRequestDto) {
-        boardService.updateBoard(boardId, updateBoardRequestDto);
+    //게시글 수정
+    @PutMapping("/api/boards/{boardId}")
+    public void updateBoard(@PathVariable Long boardId, @RequestBody UpdateBoardRequestDto updateBoardRequestDto, HttpServletRequest request) {
+        boardService.updateBoard(boardId, updateBoardRequestDto, request);
     }
 
-    @DeleteMapping("boards/{boardId}") //게시글 삭제
-    public void deleteBoard(@PathVariable Long boardId, @RequestBody DeleteBoardRequestDto deleteBoardRequestDto) {
-        boardService.deleteBoard(boardId, deleteBoardRequestDto);
+    //게시글 삭제
+    @DeleteMapping("/api/boards/{boardId}")
+    public void deleteBoard(@PathVariable Long boardId, HttpServletRequest request) {
+        boardService.deleteBoard(boardId, request);
     }
 }

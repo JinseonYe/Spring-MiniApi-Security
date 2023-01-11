@@ -11,19 +11,20 @@ public class Board extends TimeStamp{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //Long id = 0L;
+    private Long boardId;
 
-    //제목, 작성자명, 비밀먼호, 작성 내용
-    private Long id;
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String username;
-    private String password;
+
+    @Column(nullable = false)
     private String content;
 
-    public Board(String title, String username, String password, String content) {
+    public Board(String title, String username, String content) {
         this.title = title;
         this.username = username;
-        this.password = password;
         this.content = content;
     }
 
@@ -33,13 +34,5 @@ public class Board extends TimeStamp{
         this.title = title;
         this.username = username;
         this.content = content;
-    }
-
-    public boolean isValidPassword(String inputPassword) { //비밀번호 검증 로직
-        if (inputPassword.equals(this.password)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

@@ -1,5 +1,6 @@
 package com.sparta.springminiapi.dto;
 
+import com.sparta.springminiapi.domain.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -23,5 +24,9 @@ public class CreateBoardRequestDto { //dto가 만들어지려면 밑에 애들�
         this.username = username;
         this.password = password;
         this.content = content;
+    }
+
+    public Board toEntity(String username){ // RequestDto의 내용을 토대로 post 생성
+        return new Board(this.title, username, this.content);
     }
 }
