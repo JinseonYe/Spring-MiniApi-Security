@@ -2,7 +2,10 @@ package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.domain.User;
 import com.sparta.springminiapi.domain.UserRepository;
+import com.sparta.springminiapi.dto.LoginRequestDto;
 import com.sparta.springminiapi.dto.SignUpRequestDto;
+import com.sparta.springminiapi.jwt.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
     @Transactional //회원가입
     public void signUp(SignUpRequestDto signUpRequestDto) {
@@ -28,6 +32,27 @@ public class UserService {
         //유저 생성 후 DB에 저장
         User user = new User(username, password);
         userRepository.save(user);
+    }
+
+    @Transactional //로그인
+    public String signIn(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+        String username = loginRequestDto.getUsername();
+        String password = loginRequestDto.getPassword();
+
+        //회원 유무 확인
+        User user = userRepository.findByUsername(username). orElseThrow(
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+        );
+
+        //비밀번호 비교
+        if(!user.getPassword().equals(password)){
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        //Header에 추가
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername()));
+
+        return "로그인 완료!";
     }
 
 }
