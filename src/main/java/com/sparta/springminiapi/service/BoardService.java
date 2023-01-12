@@ -37,16 +37,18 @@ public class BoardService { //컨트롤타워
     public BoardResponseDto createBoard(CreateBoardRequestDto createBoardRequestDto, HttpServletRequest request) {
         //Request 에서 토큰 가져오기
         String token = jwtUtil.resolveToken(request);
-        Claims claims;
+        Claims claims; //JWT 안에 들어있는 정보들을 담을 수 있는 객체
 
-        //토큰이 있는 경우에만 게시글 작성 가능
+        //토큰이 유효한지 검사
         if (token != null) {
+            //토큰 검증
             if (jwtUtil.validateToken(token)) {
+                //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
                 throw new IllegalArgumentException("Token Error");
             }
-            //토큰에서 가져온 사용자 정보로 DB에서 해당유저를 찾아서 사용할 유저 객체 생성
+            //토큰에서 가져온 사용자 정보를 사용하여 DB 조회
             User user = userRepository.findByUsername(claims.getSubject()).orElseThrow(
                     () -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다.")
             );
@@ -176,7 +178,7 @@ public class BoardService { //컨트롤타워
                     () -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다.")
             );
 
-            //5. 해당 유저가 작성한 게시글이 맞는지 검사, 맞으면 삭제 가능
+            //해당 유저가 작성한 게시글이 맞는지 검사, 맞으면 삭제 가능
             if (board.getUsername().equals((user.getUsername()))) {
                 boardRepository.deleteById(boardId);
             } else throw new RuntimeException("본인이 작성한 게시글만 삭제할 수 있습니다.");
