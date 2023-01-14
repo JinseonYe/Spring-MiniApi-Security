@@ -1,5 +1,6 @@
 package com.sparta.springminiapi.domain;
 
+import com.sparta.springminiapi.service.UserService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,17 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(String username, String password) {
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private UserRoleEnum userRole;
+
+    public User(String username, String password, UserRoleEnum userRole) {
         this.username = username;
         this.password = password;
+        this.userRole = userRole;
+    }
+
+    public boolean isAdmin(){
+        return this.userRole == UserRoleEnum.ADMIN; //어떤 역할을 한 건지 모르겠음.
     }
 }

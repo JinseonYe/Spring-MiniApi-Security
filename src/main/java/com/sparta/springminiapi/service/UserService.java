@@ -2,6 +2,7 @@ package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.domain.User;
 import com.sparta.springminiapi.domain.UserRepository;
+import com.sparta.springminiapi.domain.UserRoleEnum;
 import com.sparta.springminiapi.dto.LoginRequestDto;
 import com.sparta.springminiapi.dto.SignUpRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
@@ -18,6 +19,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
+    private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC"; // ADMIN_TOKEN
+
     @Transactional //회원가입
     public void signUp(SignUpRequestDto signUpRequestDto) {
         String username = signUpRequestDto.getUsername();
@@ -28,8 +31,18 @@ public class UserService {
         if (found.isPresent()) {
             throw new IllegalArgumentException("이미 존재하는 회원입니다.");
         }
+
+        //회원 권한 확인
+        UserRoleEnum userRole = UserRoleEnum.USER;
+        if (signUpRequestDto.isAdmin()) { //어떤 역할을 한 건지 모르겠음.
+            if (!signUpRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
+                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
+            }
+            userRole = UserRoleEnum.ADMIN;
+        }
+
         //유저 생성 후 DB에 저장
-        User user = new User(username, password);
+        User user = new User(username, password, userRole);
         userRepository.save(user);
     }
 
@@ -48,7 +61,7 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        String generatedToken = jwtUtil.createToken(user.getUsername());
+        String generatedToken = jwtUtil.createToken(user.getUsername(),user.getUserRole());
 
         return generatedToken;
     }

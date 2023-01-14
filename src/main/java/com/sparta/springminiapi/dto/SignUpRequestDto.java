@@ -14,4 +14,6 @@ public class SignUpRequestDto {
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[(?=.*[^\\w\\s])])[A-Za-z\\d(?=.*[^\\w\\s])]{8,15}$",
             message = "최소 8자 이상, 15자 이하이며 알파벳 대소문자, 숫자, 특수문자로 구성되어야 합니다.") //소문자, 대문자, 숫자, 특수문자, 8~15개
     private String password;
+    private boolean admin = false;
+    private String adminToken = "";
 }
