@@ -5,7 +5,6 @@ import com.sparta.springminiapi.domain.UserRepository;
 import com.sparta.springminiapi.dto.LoginRequestDto;
 import com.sparta.springminiapi.dto.SignUpRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,30 +19,28 @@ public class UserService {
     private final JwtUtil jwtUtil;
 
     @Transactional //회원가입
-    public String signUp(SignUpRequestDto signUpRequestDto) {
+    public void signUp(SignUpRequestDto signUpRequestDto) {
         String username = signUpRequestDto.getUsername();
         String password = signUpRequestDto.getPassword();
 
         //회원명 중복 확인
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
-            throw new IllegalArgumentException("이미 존재하는 회원명입니다.");
+            throw new IllegalArgumentException("이미 존재하는 회원입니다.");
         }
         //유저 생성 후 DB에 저장
         User user = new User(username, password);
         userRepository.save(user);
-
-        return "회원가입 완료!";
     }
 
     @Transactional //로그인
-    public String signIn(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+    public String login(LoginRequestDto loginRequestDto) {
         String username = loginRequestDto.getUsername();
         String password = loginRequestDto.getPassword();
 
         //회원 유무 확인
         User user = userRepository.findByUsername(username). orElseThrow(
-                () -> new IllegalArgumentException("등록된 사용자ㄴ 없습니다.")
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
         );
 
         //비밀번호 비교
@@ -51,10 +48,8 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        //Header에 추가
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername()));
+        String generatedToken = jwtUtil.createToken(user.getUsername());
 
-        return "로그인 완료!";
+        return generatedToken;
     }
-
 }

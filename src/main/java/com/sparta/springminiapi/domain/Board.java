@@ -29,10 +29,14 @@ public class Board extends TimeStamp{
     }
 
     //값을 바꾸는 이유: 요구사항에서 바꾸라고 해서.
-    public void update(String title, String username, String content) {
-        //제목, 작성자명, 작성 내용을 수정
+    public void update(String title, String content) {
+        //제목, 작성 내용을 수정
         this.title = title;
-        this.username = username;
         this.content = content;
     }
+
+    public boolean isWriter(String username) {
+        return this.username.equals(username); //if(board.getUsername().equals(user.getUsername())); 보드서비스에 있던 애를 엔티티에서 일 시키기
+    }
+
 }
