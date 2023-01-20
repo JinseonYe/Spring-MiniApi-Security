@@ -1,6 +1,5 @@
 package com.sparta.springminiapi.domain;
 
-import com.sparta.springminiapi.service.UserService;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +30,7 @@ public class User {
         this.userRole = userRole;
     }
 
-    public boolean isAdmin(){
-        return this.userRole == UserRoleEnum.ADMIN; //어떤 역할을 한 건지 모르겠음.
-    }
+//    public boolean isAdmin(){
+//        return this.userRole == UserRoleEnum.ADMIN; // 권한이 어드민이라면
+//    }
 }

@@ -7,6 +7,7 @@ import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.BoardService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -118,9 +119,10 @@ public class BoardController {
                 throw new IllegalArgumentException("Token Error");
             }
             String username = claims.getSubject();
-            return boardService.deleteBoard(boardId, username);
+            boardService.deleteBoard(boardId, username);
         } else {
             throw new IllegalArgumentException("토큰이 존재하지 않습니다.");
         }
+        return "게시글 삭제 완료";
     }
 }

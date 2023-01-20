@@ -19,13 +19,6 @@ public class CreateBoardRequestDto { //dto가 만들어지려면 밑에 애들�
     private String password;
     private String content;
 
-    public CreateBoardRequestDto(String title, String username, String password, String content) {
-        this.title = title;
-        this.username = username;
-        this.password = password;
-        this.content = content;
-    }
-
     public Board toEntity(String username){ // RequestDto의 내용을 토대로 post 생성
         return new Board(this.title, username, this.content);
     }

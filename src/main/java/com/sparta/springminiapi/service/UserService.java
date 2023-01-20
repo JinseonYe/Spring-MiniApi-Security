@@ -34,17 +34,25 @@ public class UserService {
 
         //회원 권한 확인
         UserRoleEnum userRole = UserRoleEnum.USER;
-        if (signUpRequestDto.isAdmin()) { //어떤 역할을 한 건지 모르겠음.
+        if (signUpRequestDto.isAdmin()) { //가입을 요청하는 회원이 관리자라면
             if (!signUpRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
                 throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
             }
             userRole = UserRoleEnum.ADMIN;
         }
 
-        //유저 생성 후 DB에 저장
-        User user = new User(username, password, userRole);
-        userRepository.save(user);
-    }
+//        if (signUpRequestDto.getAdminToken() != null) signUpRequestDto.setAdmin(true);
+//        if (signUpRequestDto.isAdmin()) {
+//            if (!signUpRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
+//                throw new IllegalArgumentException("관리자 암호가 일치하지 않아 등록할 수 없습니다.");
+//            }
+//            userRole = UserRoleEnum.ADMIN;
+//        }
+
+            //유저 생성 후 DB에 저장
+            User user = new User(username, password, userRole);
+            userRepository.save(user);
+        }
 
     @Transactional //로그인
     public String login(LoginRequestDto loginRequestDto) {
