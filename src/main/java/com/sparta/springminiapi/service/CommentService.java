@@ -46,10 +46,12 @@ public class CommentService {
                 () -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다.")
         );
 
-        if (comment.getUsername().equals(user.getUsername())) {
-            comment.update(requestDto);
-        } else throw new RuntimeException("본인이 작성한 댓글만 수정할 수 있습니다.");
+        UserRoleEnum userRoleEnum = user.getUserRole();
+        if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) {
+            throw new IllegalArgumentException("본인이 작성한 게시글만 수정할 수 있습니다.");
+        }
 
+        comment.update(requestDto);
         return new CommentResponseDto(comment);
 
 //        return new CommentResponseDto(comment);
@@ -73,8 +75,11 @@ public class CommentService {
                 () -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다.")
         );
 
-        if (comment.getUsername().equals(user.getUsername())) {
-            commentRepository.deleteById(commentId);
-        } else throw new RuntimeException("본인이 작성한 댓글만 삭제할 수 있습니다.");
+        UserRoleEnum userRoleEnum = user.getUserRole();
+        if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) { //유저네임이 일치하지 않는 유저일 때 제외하고 모두 게시글 작성 가능.
+            throw new IllegalArgumentException("본인이 작성한 게시글만 삭제할 수 있습니다.");
+        }
+
+        commentRepository.deleteById(commentId);
     }
 }

@@ -18,7 +18,6 @@ public class BoardService { //컨트롤타워
 
     private final BoardRepository boardRepository; // BoardRepository에서 상속하면 만들어줘야함. 엔티티처럼
     private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
 
     //게시글 생성 로직
     @Transactional
