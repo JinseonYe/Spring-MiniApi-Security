@@ -26,7 +26,7 @@ public class CommentService {
                 () -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다.")
         );
 
-        Comment comment = new Comment(username, requestDto.getComment());
+        Comment comment = new Comment(username, requestDto.getComment(), board);
         commentRepository.save(comment);
         return new CommentResponseDto(comment);
     }

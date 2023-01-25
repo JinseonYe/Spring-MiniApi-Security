@@ -14,6 +14,11 @@ public class Comment extends TimeStamp {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
 
+    //연관관계
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
+
     @Column(nullable = false)
     private String username;
 
@@ -21,9 +26,10 @@ public class Comment extends TimeStamp {
     private String comment;
 
     //기본 생성자
-    public Comment(String username, String comment) {
+    public Comment(String username, String comment, Board board) {
         this.username = username;
         this.comment = comment;
+        this.board = board;
     }
 
     public void update(CommentRequestDto requestDto) {
