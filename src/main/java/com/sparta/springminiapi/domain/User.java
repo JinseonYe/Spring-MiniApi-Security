@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long UserId;
 
     //회원명, 비밀먼호
     @Column(nullable = false) //null값이 올 수 없음.
