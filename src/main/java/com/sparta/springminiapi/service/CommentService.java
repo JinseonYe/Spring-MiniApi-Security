@@ -1,7 +1,6 @@
 package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.domain.*;
-import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CommentRequestDto;
 import com.sparta.springminiapi.dto.CommentResponseDto;
 import jakarta.transaction.Transactional;
