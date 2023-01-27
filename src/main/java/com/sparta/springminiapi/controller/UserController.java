@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.controller;
 
-import com.sparta.springminiapi.Enum.StatusEnum;
+import com.sparta.springminiapi.enums.StatusEnum;
 import com.sparta.springminiapi.dto.LoginRequestDto;
 import com.sparta.springminiapi.dto.SignUpRequestDto;
 import com.sparta.springminiapi.dto.StatusResponseDto;

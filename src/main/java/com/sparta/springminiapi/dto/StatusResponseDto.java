@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.dto;
 
-import com.sparta.springminiapi.Enum.StatusEnum;
+import com.sparta.springminiapi.enums.StatusEnum;
 import lombok.Data;
 
 @Data

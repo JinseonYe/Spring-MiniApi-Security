@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.Enum;
+package com.sparta.springminiapi.enums;
 
 public enum StatusEnum {
     OK(200, "OK"),

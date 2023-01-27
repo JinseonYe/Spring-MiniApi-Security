@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.controller;
 
-import com.sparta.springminiapi.Enum.StatusEnum;
+import com.sparta.springminiapi.enums.StatusEnum;
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
 import com.sparta.springminiapi.dto.StatusResponseDto;
@@ -9,7 +9,6 @@ import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.BoardService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

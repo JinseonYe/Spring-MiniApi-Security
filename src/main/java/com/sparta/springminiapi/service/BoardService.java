@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.service;
 
-import com.sparta.springminiapi.Enum.UserRoleEnum;
+import com.sparta.springminiapi.enums.UserRoleEnum;
 import com.sparta.springminiapi.domain.*;
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
