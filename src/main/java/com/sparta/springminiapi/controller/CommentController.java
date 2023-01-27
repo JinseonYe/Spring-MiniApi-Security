@@ -1,12 +1,16 @@
 package com.sparta.springminiapi.controller;
 
+import com.sparta.springminiapi.Enum.StatusEnum;
 import com.sparta.springminiapi.dto.CommentRequestDto;
 import com.sparta.springminiapi.dto.CommentResponseDto;
+import com.sparta.springminiapi.dto.StatusResponseDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.CommentService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -61,7 +65,8 @@ public class CommentController {
 
     //댓글 삭제
     @DeleteMapping("/boards/{boardId}/{commentId}")
-    public String deleteComment(@PathVariable Long boardId, @PathVariable Long commentId, HttpServletRequest request) {
+    public ResponseEntity<StatusResponseDto> deleteComment(@PathVariable Long boardId, @PathVariable Long commentId, HttpServletRequest request) {
+        StatusResponseDto responseDto = new  StatusResponseDto(StatusEnum.OK, "댓글 삭제 완료");
         String token = jwtUtil.resolveToken(request);
         Claims claims;
 
@@ -78,7 +83,7 @@ public class CommentController {
         } else {
             throw new IllegalArgumentException("토큰이 존재하지 않습니다.");
         }
-        return "게시글 삭제 완료";
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
 

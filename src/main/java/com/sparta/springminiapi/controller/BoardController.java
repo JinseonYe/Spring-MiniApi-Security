@@ -1,7 +1,9 @@
 package com.sparta.springminiapi.controller;
 
+import com.sparta.springminiapi.Enum.StatusEnum;
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
+import com.sparta.springminiapi.dto.StatusResponseDto;
 import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.BoardService;
@@ -9,6 +11,8 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -105,7 +109,8 @@ public class BoardController {
 
     //게시글 삭제
     @DeleteMapping("/api/boards/{boardId}")
-    public String deleteBoard(@PathVariable Long boardId, HttpServletRequest request) {
+    public ResponseEntity<StatusResponseDto> deleteBoard(@PathVariable Long boardId, HttpServletRequest request) {
+        StatusResponseDto responseDto = new  StatusResponseDto(StatusEnum.OK, "게시글 삭제 완료");
         //Request에서 토큰 가져오기
         String token = jwtUtil.resolveToken(request);
         Claims claims;
@@ -123,6 +128,6 @@ public class BoardController {
         } else {
             throw new IllegalArgumentException("토큰이 존재하지 않습니다.");
         }
-        return "게시글 삭제 완료";
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 }
