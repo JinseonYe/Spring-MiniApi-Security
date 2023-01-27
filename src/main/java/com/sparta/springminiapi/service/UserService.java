@@ -2,7 +2,7 @@ package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.domain.User;
 import com.sparta.springminiapi.domain.UserRepository;
-import com.sparta.springminiapi.domain.UserRoleEnum;
+import com.sparta.springminiapi.Enum.UserRoleEnum;
 import com.sparta.springminiapi.dto.LoginRequestDto;
 import com.sparta.springminiapi.dto.SignUpRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;

@@ -1,5 +1,6 @@
 package com.sparta.springminiapi.domain;
 
+import com.sparta.springminiapi.Enum.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

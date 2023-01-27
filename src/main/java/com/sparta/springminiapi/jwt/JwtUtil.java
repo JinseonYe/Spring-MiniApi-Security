@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.jwt;
 
-import com.sparta.springminiapi.domain.UserRoleEnum;
+import com.sparta.springminiapi.Enum.UserRoleEnum;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;

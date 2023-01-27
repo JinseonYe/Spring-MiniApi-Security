@@ -1,10 +1,10 @@
 package com.sparta.springminiapi.service;
 
+import com.sparta.springminiapi.Enum.UserRoleEnum;
 import com.sparta.springminiapi.domain.*;
 import com.sparta.springminiapi.dto.BoardResponseDto;
 import com.sparta.springminiapi.dto.CreateBoardRequestDto;
 import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
-import com.sparta.springminiapi.jwt.JwtUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

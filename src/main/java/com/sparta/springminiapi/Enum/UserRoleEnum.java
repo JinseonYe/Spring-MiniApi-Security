@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.domain;
+package com.sparta.springminiapi.Enum;
 
 public enum UserRoleEnum {
     USER,  // 사용자 권한
