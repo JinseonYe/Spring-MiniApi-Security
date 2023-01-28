@@ -31,7 +31,7 @@ public class CommentController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
             String username = claims.getSubject();
 
@@ -53,7 +53,7 @@ public class CommentController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
             String username = claims.getSubject();
 
@@ -76,7 +76,7 @@ public class CommentController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
             String username = claims.getSubject();
             commentService.deleteComment(boardId, commentId, username);

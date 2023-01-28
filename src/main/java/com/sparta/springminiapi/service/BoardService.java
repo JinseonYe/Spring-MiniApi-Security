@@ -64,7 +64,7 @@ public class BoardService { //컨트롤타워
 
         UserRoleEnum userRoleEnum = user.getUserRole();
         if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) { //유저네임이 일치하지 않는 유저일 때 제외하고 모두 게시글 작성 가능.
-            throw new IllegalArgumentException("본인이 작성한 게시글만 수정할 수 있습니다.");
+            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         }
 
         board.update(updateBoardRequestDto.getTitle(), updateBoardRequestDto.getContent());
@@ -81,13 +81,13 @@ public class BoardService { //컨트롤타워
                 () -> new RuntimeException("해당 boardId 의 게시글이 존재하지 않습니다.")
         );
 
-        User user = userRepository.findByUsername(username).orElseThrow(
+        User user = userRepository.findByUsername(username).orElseThrow( //이 로직은 아래에서 처리해주기 때문에 없어도 될 거 같은데
                 () -> new RuntimeException("해당 유저의 게시글이 존재하지 않습니다.")
         );
 
         UserRoleEnum userRoleEnum = user.getUserRole();
         if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) { //유저네임이 일치하지 않는 유저일 때 제외하고 모두 게시글 작성 가능.
-            throw new IllegalArgumentException("본인이 작성한 게시글만 삭제할 수 있습니다.");
+            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
         }
 
         boardRepository.deleteById(boardId);

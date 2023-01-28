@@ -48,7 +48,7 @@ public class CommentService {
 
         UserRoleEnum userRoleEnum = user.getUserRole();
         if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) {
-            throw new IllegalArgumentException("본인이 작성한 게시글만 수정할 수 있습니다.");
+            throw new IllegalArgumentException("작성자만 수정할 수 있습니다.");
         }
 
         comment.update(requestDto);
@@ -77,7 +77,7 @@ public class CommentService {
 
         UserRoleEnum userRoleEnum = user.getUserRole();
         if (!user.getUsername().equals(board.getUsername()) && userRoleEnum == UserRoleEnum.USER) { //유저네임이 일치하지 않는 유저일 때 제외하고 모두 게시글 작성 가능.
-            throw new IllegalArgumentException("본인이 작성한 게시글만 삭제할 수 있습니다.");
+            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
         }
 
         commentRepository.deleteById(commentId);

@@ -29,7 +29,7 @@ public class UserService {
         //회원명 중복 확인
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
-            throw new IllegalArgumentException("이미 존재하는 회원입니다.");
+            throw new IllegalArgumentException("중복된 username 입니다.");
         }
 
         //회원 권한 확인
@@ -61,12 +61,12 @@ public class UserService {
 
         //회원 유무 확인
         User user = userRepository.findByUsername(username). orElseThrow(
-                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+                () -> new IllegalArgumentException("회원을 찾을 수 없습니다.")
         );
 
         //비밀번호 비교
         if(!user.getPassword().equals(password)){
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new IllegalArgumentException("회원을 찾을 수 없습니다.");
         }
 
         String generatedToken = jwtUtil.createToken(user.getUsername(),user.getUserRole());

@@ -35,7 +35,7 @@ public class BoardController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유요하지 않습니다.");
             }
 
 //            //토큰에서 가져온 사용자 정보를 사용하여 DB 조회
@@ -97,7 +97,7 @@ public class BoardController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
             String username = claims.getSubject();
             return boardService.updateBoard(boardId, updateBoardRequestDto, username);
@@ -120,7 +120,7 @@ public class BoardController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
             String username = claims.getSubject();
             boardService.deleteBoard(boardId, username);
