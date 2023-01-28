@@ -1,6 +1,5 @@
 package com.sparta.springminiapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,6 @@ public class Board extends TimeStamp{
     private Long boardId;
 
     //연관관계
-    @JsonManagedReference
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     private List<Comment> commentList = new ArrayList<>();
 

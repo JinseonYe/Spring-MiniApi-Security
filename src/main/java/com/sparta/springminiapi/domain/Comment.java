@@ -1,6 +1,5 @@
 package com.sparta.springminiapi.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sparta.springminiapi.dto.CommentRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -16,7 +15,6 @@ public class Comment extends TimeStamp {
     private Long commentId;
 
     //연관관계
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
