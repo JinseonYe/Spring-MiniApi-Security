@@ -1,10 +1,10 @@
 package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.domain.User;
-import com.sparta.springminiapi.domain.UserRepository;
+import com.sparta.springminiapi.repository.UserRepository;
 import com.sparta.springminiapi.enums.UserRoleEnum;
-import com.sparta.springminiapi.dto.LoginRequestDto;
-import com.sparta.springminiapi.dto.SignUpRequestDto;
+import com.sparta.springminiapi.requestDto.LoginRequestDto;
+import com.sparta.springminiapi.requestDto.SignUpRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

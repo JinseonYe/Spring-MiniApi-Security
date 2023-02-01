@@ -1,10 +1,10 @@
 package com.sparta.springminiapi.controller;
 
 import com.sparta.springminiapi.enums.StatusEnum;
-import com.sparta.springminiapi.dto.BoardResponseDto;
-import com.sparta.springminiapi.dto.CreateBoardRequestDto;
-import com.sparta.springminiapi.dto.StatusResponseDto;
-import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
+import com.sparta.springminiapi.responseDto.BoardResponseDto;
+import com.sparta.springminiapi.requestDto.CreateBoardRequestDto;
+import com.sparta.springminiapi.responseDto.StatusResponseDto;
+import com.sparta.springminiapi.requestDto.UpdateBoardRequestDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.BoardService;
 import io.jsonwebtoken.Claims;
@@ -35,7 +35,7 @@ public class BoardController {
                 //토큰에서 사용자 정보 가져오기
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("토큰이 유요하지 않습니다.");
+                throw new IllegalArgumentException("토큰이 유효하지 않습니다.");
             }
 
 //            //토큰에서 가져온 사용자 정보를 사용하여 DB 조회

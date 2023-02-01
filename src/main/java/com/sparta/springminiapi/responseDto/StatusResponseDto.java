@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.dto;
+package com.sparta.springminiapi.responseDto;
 
 import com.sparta.springminiapi.enums.StatusEnum;
 import lombok.Data;

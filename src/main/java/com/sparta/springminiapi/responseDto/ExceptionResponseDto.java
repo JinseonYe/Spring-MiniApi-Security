@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.dto;
+package com.sparta.springminiapi.responseDto;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

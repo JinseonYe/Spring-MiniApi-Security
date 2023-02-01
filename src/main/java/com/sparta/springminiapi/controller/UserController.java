@@ -1,9 +1,9 @@
 package com.sparta.springminiapi.controller;
 
 import com.sparta.springminiapi.enums.StatusEnum;
-import com.sparta.springminiapi.dto.LoginRequestDto;
-import com.sparta.springminiapi.dto.SignUpRequestDto;
-import com.sparta.springminiapi.dto.StatusResponseDto;
+import com.sparta.springminiapi.requestDto.LoginRequestDto;
+import com.sparta.springminiapi.requestDto.SignUpRequestDto;
+import com.sparta.springminiapi.responseDto.StatusResponseDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;

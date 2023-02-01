@@ -1,9 +1,9 @@
 package com.sparta.springminiapi.controller;
 
 import com.sparta.springminiapi.enums.StatusEnum;
-import com.sparta.springminiapi.dto.CommentRequestDto;
-import com.sparta.springminiapi.dto.CommentResponseDto;
-import com.sparta.springminiapi.dto.StatusResponseDto;
+import com.sparta.springminiapi.requestDto.CommentRequestDto;
+import com.sparta.springminiapi.responseDto.CommentResponseDto;
+import com.sparta.springminiapi.responseDto.StatusResponseDto;
 import com.sparta.springminiapi.jwt.JwtUtil;
 import com.sparta.springminiapi.service.CommentService;
 import io.jsonwebtoken.Claims;

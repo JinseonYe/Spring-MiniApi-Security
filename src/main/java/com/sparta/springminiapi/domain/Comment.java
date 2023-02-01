@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.domain;
 
-import com.sparta.springminiapi.dto.CommentRequestDto;
+import com.sparta.springminiapi.requestDto.CommentRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

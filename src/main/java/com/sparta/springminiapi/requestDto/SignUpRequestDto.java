@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.dto;
+package com.sparta.springminiapi.requestDto;
 
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;

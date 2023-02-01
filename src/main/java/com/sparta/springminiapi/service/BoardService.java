@@ -2,9 +2,11 @@ package com.sparta.springminiapi.service;
 
 import com.sparta.springminiapi.enums.UserRoleEnum;
 import com.sparta.springminiapi.domain.*;
-import com.sparta.springminiapi.dto.BoardResponseDto;
-import com.sparta.springminiapi.dto.CreateBoardRequestDto;
-import com.sparta.springminiapi.dto.UpdateBoardRequestDto;
+import com.sparta.springminiapi.responseDto.BoardResponseDto;
+import com.sparta.springminiapi.requestDto.CreateBoardRequestDto;
+import com.sparta.springminiapi.requestDto.UpdateBoardRequestDto;
+import com.sparta.springminiapi.repository.BoardRepository;
+import com.sparta.springminiapi.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

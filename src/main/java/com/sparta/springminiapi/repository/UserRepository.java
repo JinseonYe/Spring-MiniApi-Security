@@ -1,5 +1,6 @@
-package com.sparta.springminiapi.domain;
+package com.sparta.springminiapi.repository;
 
+import com.sparta.springminiapi.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

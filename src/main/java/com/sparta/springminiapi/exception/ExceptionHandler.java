@@ -1,6 +1,6 @@
 package com.sparta.springminiapi.exception;
 
-import com.sparta.springminiapi.dto.ExceptionResponseDto;
+import com.sparta.springminiapi.responseDto.ExceptionResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

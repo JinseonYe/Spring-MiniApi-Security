@@ -1,4 +1,4 @@
-package com.sparta.springminiapi.dto;
+package com.sparta.springminiapi.requestDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
